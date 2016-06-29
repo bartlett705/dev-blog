@@ -1,0 +1,11 @@
+title: First Post
+publish: True
+timestamp: 29 Jun 2016
+body: |
+      Hello Wor- eh, I guess we're past that point by now.
+
+      In my never-ending obsession with ways to store and manipulate data that I don't have, I decided to learn about XML, SGML, and YAML one night.  After a bit of WikiPedia-diving, I decided that YAML was the most attractive choice for implementing yet another digital-journal-type program.  The plain-text journal snippets I had used from time to time were nearly well-formed YAML documents already.  
+
+      After a few experiments with using jQuery to populate an HTML document with data from an external structure, like the <a href="http://codemosey.net/menu">menu generator</a>, I felt plenty comfortable writing html using a series of concatenated strings. Python is my scripting language of choice at the moment, and it has a pretty handy <a href="http://pyyaml.org/wiki">PyYAML</a> library (not that you hardly need any external help parsing such simple YAML documents), so I knocked together a YAML -> HTML formatter in no time.  The next step is actually making it look decent with some css!
+
+tags: ['YAML', 'python']

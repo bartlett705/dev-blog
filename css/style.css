@@ -1,0 +1,36 @@
+body {
+  font-family: 'Fira Mono', Monospace;
+  background-color : #101018;
+  color: #d0bf8f;
+}
+h1, h2, h3 {
+  font-family: 'VT323', Monospace;
+  font-weight: 200;
+  color: #d0bf8f;
+}
+h1 {
+    text-align: center;
+}
+.entry {
+    border: 1px #404060 dotted;
+    border-radius: 5px
+    background-color : #202030;
+}
+a {
+    font-weight: 700;
+    text-decoration: none;
+    color: #952020;
+}
+.tagged-posts {
+    display: none
+}
+.tag-name:hover {
+    background-color: #202030;
+    border: 1px #404060 dotted;
+    border-radius: 5px;
+    height: auto;
+    width: 100%;
+}
+.tag-name:hover > .tagged-posts {
+    display: inline
+}
