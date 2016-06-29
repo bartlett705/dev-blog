@@ -14,19 +14,22 @@ header = """
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>[codemosey.net developer blog]</h1>
-    <h2>Posts</h2>
-    
+    <h1>[codemosey.net developer blog]</h1>   
 """
 footer = """
+<hr><br>
 <div class='attribution'>(c) <a href="http://codemosey.net">codemosey.net</a> aka Ahmad</div>
-"""
-
-post_footer = """
-    <a href="index.html">Back</a>
   </body>
 </html>
-""" + footer
+"""
 
-index_header = header
+post_header = header
+
+post_footer = footer
+
+
+index_header = header + """
+    <h2>Posts</h2>
+"""
+
 index_footer = footer
