@@ -9,16 +9,16 @@ header = """
 <!doctype html>
 <html>
   <head>
-    <title>[codemosey.net developer blog]</title>
+    <title>{% blog_name %}</title>
     <link href="https://fonts.googleapis.com/css?family=VT323|Fira+Mono:400,700" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>[codemosey.net developer blog]</h1>   
+    <h1>{% blog_name %}</h1>   
 """
 footer = """
 <hr><br>
-<div class='attribution'>(c) <a href="http://codemosey.net">codemosey.net</a> aka Ahmad</div>
+<div class='attribution'>(c) <a href='{% org_link %}'>{% org_name %}</a></div>
   </body>
 </html>
 """
