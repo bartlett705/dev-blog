@@ -9,11 +9,10 @@ timestamp: 28 Jun 2016
 tags: ['CSS', 'JavaScript', 'Food']
 body : |
   <p>My catering partner and I always chuckle at seeing the same dishes on different menus - a perfect example would be the explosion in fried brussels sprouts over the past half-decade - and it struck me today  day while walking on the beach that I may have all of the skills necessary to put together a random gastropub website generator - at least the menu part.  I started out with a simple proof of concept - the four possible ingredients for each dish were ['cats', 'dogs', 'mice', 'rice'].  Not all that many delicious combinations there.
-
   <p>The concept is simple enough - it's really a glorified mad-libs driven by random choices from a list of (mostly) plausible options.  There are two distinct, but very similar parts:
      <ul><li>the menu grammar, which is all string manipulation.
-     <li>the website look and layout, which is a matter of writing many differnt style blocks for each page element, then letting the script choose from them randomly.</ul>
-     <p>The first part is easy enough, even if the code isn't the most elegant-looking; it begins with a nice 'pantry' of options for the main elements of a dish (mostly proteins and high-class veg), some veggies and starches, sauces, and garnishes in the form of a series of lists.  I stuck these in a seperate .js file just for the sake of organization.  The logic for assembling said ingredients into a tasty dish consists of a series of conditionals and some basic string manipulation defining a sort of simple grammar, which is populated by JavaScript's wonderful and aptly-named Math.random() function...ahem.
+     <li>the website look and layout, which is a matter of writing many different style blocks for each page element, then letting the script choose from them randomly.</ul>
+     <p>The first part is easy enough, even if the code isn't the most elegant-looking; it begins with a nice 'pantry' of options for the main elements of a dish (mostly proteins and high-class veg), some veggies and starches, sauces, and garnishes in the form of a series of lists.  I stuck these in a separate .js file just for the sake of organization.  The logic for assembling said ingredients into a tasty dish consists of a series of conditionals and some basic string manipulation defining a sort of simple grammar, which is populated by JavaScript's wonderful and aptly-named Math.random() function...ahem.
      <p>The second part, that is, the CSS, makes liberal use of nested class selectors to essentially define several different website layouts in one file, each under a 'master' class applied to the body. i.e.
      <pre> 
      .bg3 {  /* layout starts with a color scheme 
@@ -24,9 +23,9 @@ body : |
         -webkit-animate: slide-up 1s 1 forwards;
         -webkit-animation: slide-up 1s 1 forwards;
         animation: slide-up 1s 1 forwards;
-       }
+       } 
 
-     .font1 { /* While other elements, like font, can be chosed randomly on an independent basis to increase the number of potential combinations.
+     .font1 { /* While other elements, like font, can be chosen randomly on an independent basis to increase the number of potential combinations.
         font-family: 'Amatica SC', cursive;
         font-size: 16pt;
   	}
@@ -34,7 +33,7 @@ body : |
         font-family: 'Aref Ruqaa', serif;
         font-size: 14pt;
       </pre>
-      My original plan was to actually make seperate css files, and include a different one with each load of the page, but the ability to nest class styles made that unecessary, and I like being able to edit everything in one file.
+      My original plan was to actually make separate css files, and include a different one with each load of the page, but the ability to nest class styles made that unnecessary, and I like being able to edit everything in one file.
 ---
 title: First Post
 publish: True
@@ -53,7 +52,7 @@ timestamp: 30 Jun 2016
 publish: yes
 tags: ['YAML', 'python']
 body: |
-  In attempting to generalize this blog's code, I ran into the issue of wanting to place data that wasn't available until runtime (i.e. the blog's name and author info, which will live as the first entry of the YAML file) into the template HTML stored in another file.  The solution was very simple; I stole it straight from jinja, in fact.  In the HTML, we put placeholders, for instance:
+  In attempting to generalize this blog's code, I ran into the issue of wanting to place data that wasn't available until run-time (i.e. the blog's name and author info, which will live as the first entry of the YAML file) into the template HTML stored in another file.  The solution was very simple; I stole it straight from jinja, in fact.  In the HTML, we put placeholders, for instance:
   <code>
   <body>
     <h1>{% blog_name %}</h1>
