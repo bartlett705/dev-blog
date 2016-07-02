@@ -1,6 +1,14 @@
-.codehilite {
+.codehilite, code {
 	background-color: #101005;
 	border-radius: 5px;
+	font-size: 12pt;
+	font-family: 'Source Code Pro', monospace;
+}
+code {
+	padding: 3px;
+}
+pre {
+	font-family: 'Source Code Pro', monospace;
 }
 .hll { background-color: #49483e }
 .c { color: #75715e } /* Comment */

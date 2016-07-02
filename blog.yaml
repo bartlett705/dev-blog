@@ -1,4 +1,3 @@
-
 blog_name: '[codemosey.net developer blog]'
 org_name: codemosey.net</a> aka Ahmad
 org_link: http://codemosey.net
@@ -6,16 +5,16 @@ org_link: http://codemosey.net
 title: Menu Generator retcon-ed
 publish: True
 timestamp: 28 Jun 2016
-tags: ['CSS', 'JavaScript', 'Food']
+tags: ['css', 'JavaScript', 'Food']
 body : |
-  My catering partner and I always chuckle at seeing the **same** dishes on different menus - a perfect example would be the explosion in fried brussels sprouts over the past half-decade - and it struck me today  day while walking on the beach that I may have all of the skills necessary to put together a random gastropub website generator - at least the menu part.  I started out with a simple proof of concept - the four possible ingredients for each dish were ['cats', 'dogs', 'mice', 'rice'].  Not all that many delicious combinations there.
+  My catering partner and I always chuckle at seeing essentially the same dishes on different menus - a perfect example would be the explosion in fried brussels sprouts over the past half-decade - and it struck me today  day while walking on the beach that I may have all of the skills necessary to put together a random gastropub website generator - at least the menu part.  I started out with a simple proof of concept - the four possible ingredients for each dish were ['cats', 'dogs', 'mice', 'rice'].  Not all that many delicious combinations there.
   The concept is simple enough - it's really a glorified mad-libs driven by random choices from a list of (mostly) plausible options.  There are two distinct, but very similar parts:
   
   - the menu grammar, which is all string manipulation.
   - the website look and layout, which is a matter of writing many different style blocks for each page element, then letting the script choose from them randomly.
   
-  The first part is easy enough, even if the code isn't the most elegant-looking; it begins with a nice 'pantry' of options for the main elements of a dish (mostly proteins and high-class veg), some veggies and starches, sauces, and garnishes in the form of a series of lists.  I stuck these in a separate .js file just for the sake of organization.  The logic for assembling said ingredients into a tasty dish consists of a series of conditionals and some basic string manipulation defining a sort of simple grammar, which is populated by JavaScript's wonderful and aptly-named Math.random() function...ahem.
-  The second part, that is, the CSS, makes liberal use of nested class selectors to essentially define several different website layouts in one file, each under a 'master' class applied to the body. i.e.
+  The first part is easy enough, even if the code isn't the most elegant-looking; it begins with a nice 'pantry' of options for the main elements of a dish (mostly proteins and high-class veg), some veggies and starches, sauces, and garnishes in the form of a series of lists.  I stuck these in a separate .js file just for the sake of organization.  The logic for assembling said ingredients into a tasty dish consists of a series of conditionals and some basic string manipulation defining a sort of simple grammar, which is populated by `JavaScript`'s wonderful and aptly-named `Math.random()` function...ahem.
+  The second part, that is, the `css`, makes liberal use of nested class selectors to essentially define several different website layouts in one file, each under a 'master' class applied to the body. i.e.
       
   ```css
 
@@ -38,7 +37,7 @@ body : |
     font-size: 14pt;
   }
   ```
-  My original plan was to actually make separate css files, and include a different one with each load of the page, but the ability to nest class styles made that unnecessary, and I like being able to edit everything in one file.
+  My original plan was to actually make separate `css` files, and include a different one with each load of the page, but the ability to nest class styles made that unnecessary, and I like being able to edit everything in one file.
 ---
 title: First Post
 publish: True
@@ -46,9 +45,9 @@ timestamp: 29 Jun 2016
 body: |
   Hello Wor- eh, I guess we're past that point by now.
       
-  In my never-ending obsession with ways to store and manipulate data that I don't have, I decided to learn about XML, SGML, and YAML one night.  After a bit of WikiPedia-diving, I decided that YAML was the most attractive choice for implementing yet another digital-journal-type program.  The plain-text journal snippets I had used from time to time were nearly well-formed YAML documents already.  
+  In my never-ending obsession with ways to store and manipulate data that I don't have, I decided to learn more about `XML`, `SGML`, and `YAML` one night.  After a bit of WikiPedia-diving, I decided that `YAML` was the most attractive choice for implementing yet another digital-journal-type program.  The plain-text journal snippets I had used from time to time were nearly well-formed `YAML` documents already.  
       
-  After a few experiments with using jQuery to populate an HTML document with data from an external structure, like the <a href="http://codemosey.net/menu" target="_blank">menu generator</a>, I felt plenty comfortable writing html using a series of concatenated strings. Python is my scripting language of choice at the moment, and it has a pretty handy <a href="http://pyyaml.org/wiki">PyYAML</a> library (not that you hardly need any external help parsing such simple YAML documents), so I knocked together a YAML -> HTML formatter in no time. 
+  After a few experiments with using jQuery to populate an `HTML` document with data from an external structure, like the <a href="http://codemosey.net/menu" target="_blank">menu generator</a>, I felt plenty comfortable writing html using a series of concatenated strings. Python is my scripting language of choice at the moment, and it has a pretty handy <a href="http://pyyaml.org/wiki">PyYAML</a> library (not that you hardly need any external help parsing such simple `YAML` documents), so I knocked together a `YAML` -> `HTML` formatter in no time. 
 
 tags: ['YAML', 'python']
 ---
@@ -57,7 +56,7 @@ timestamp: 30 Jun 2016
 publish: yes
 tags: ['YAML', 'python']
 body: |
-  In attempting to generalize this blog's code, I ran into the issue of wanting to place data that wasn't available until run-time (i.e. the blog's name and author info, which will live as the first entry of the YAML file) into the template HTML stored in another file.  The solution was very simple; I stole it straight from jinja, in fact.  In the HTML, we put placeholders, for instance:
+  In attempting to generalize this blog's code, I ran into the issue of wanting to place data that wasn't available until run-time (i.e. the blog's name and author info, which will live as the first entry of the `YAML` file) into the template `HTML` stored in another file.  The solution was very simple; I stole it straight from `jinja`, in fact.  In the `HTML`, we put placeholders, for instance:
   ```html
       <h1>{% blog_name %}</h1>
   ```
@@ -67,25 +66,34 @@ body: |
   ```
   in the footer.
   
-  Then, we just make a pass at those imported strings with replace() in the formatting script AFTER we've pulled the data from the YAML file's first record, i.e.:
+  Then, we just make a pass at those imported strings with replace() in the formatting script AFTER we've pulled the data from the `YAML` file's first record, i.e.:
   ```python
       index_footer = index_footer.replace('{% org_name %}', blog_info['org_name'])
   ```
-  By moving the remaining 'user' data out of the formatting script and into the blog's YAML data file, the script is now much more re-usable.
+  By moving the remaining 'user' data out of the formatting script and into the blog's `YAML` data file, the script is now much more re-usable.
   ***
   In anticipation of having many more tags, I also added a step to sort the dictionary of them into a list of tuples, sorted by the length of the list of relevant posts, like so:
   ```python
   tag_dict = sorted(tag_dict.items(), key=lambda t: len(t[1]), reverse=True)
   ```
-  The lambda function looks scary, but all it does is return the length of the [1]st element for each (key, value) pair that .items() pulls out of tag_dict, which in our case is a list of (title, link) tuples for each post with that tag.  It can be confusing to see 'key' in the sort function, as well, but this has nothing to do with the dictionary, really - the sort 'key' refers to what the sort criteria should be, which in the line above ends up being an integer for each entry in tag_dict, equal to the number of posts with that tag.  We reverse the sort, so that the big numbers - i.e. tags with a lot of posts referencing them - come first.
+  The `lambda` function looks scary, but all it does is return the length of the [1]st element for each (key, value) pair that .items() pulls out of tag_dict, which in our case is a list of `(title, link)` tuples for each post with that tag.  It can be confusing to see `key` in the sort function, as well, but this has nothing to do with the dictionary, really - the sort `key` refers to what the sort criteria should be, which in the line above ends up being an integer for each entry in tag_dict, equal to the number of posts with that tag.  We reverse the sort, so that the big numbers - i.e. tags with a lot of posts referencing them - come first.
 ---
 title: dev-blog-plus
 timestamp: 01 Jul 2016
 publish: sure
-tags: ['CSS', 'JavaScript']
+tags: ['css', 'JavaScript']
 body:
-  The totally-minimalist version of dev-blog didn't last long.  It still exists - and will continue to be updated as needed - but, there is a new fork, aptly-named dev-blog-plus.  So far the only addition is rainbow.js, for purposes of code syntax highlighting.  That will probably remain the only difference between the two flavors for some time.
-  
+  The totally-minimalist version of dev-blog didn't last long.  There just _had_ to be some `JavaScript` So far the only addition is [`rainbow.js`](https://craig.is/making/rainbows), for purposes of code syntax highlighting.  That will probably (hopefully?) remain the only running code in the project, unless the css-based monthly post grouping idea doesn't work out, and jQuery makes an appearance to fill in the gap.
+  ***
   The script that powers dev-blog now has command-line features to choose a different input file and/or output directory, as well as better documentation both at the command line and in the README.md
   
   Oh yeah, and this is now linked from somewhere. 
+---
+title: markdown
+timestamp: 02 Jul 2016
+publish: sure
+tags: ['python', 'markdown']
+body:
+  A cursory investigation into adding markdown support to our `python` script revealed that both of the popular python markdown formatters support built-in code syntax highlighting as well.  So, by jumping to syntax highlighting (which was certainly more exciting), unnecessary work was done.  Oh well.  Markdown implementation was no problem, including the CodeHiLite extension (though the extension itself seems a bit finicky with its own purported syntax) and the `pygmentize` command-line functionality is definitely a nice thing to have around.
+  ***
+  With the ability to post formatted entries with highlighted code snippets, this `python`/`css` bundle has all the functionality needed to make it useful for the time being.  Once there are a few more posts, some handling of post groupings by month will be necessary.

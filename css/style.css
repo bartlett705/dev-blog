@@ -1,5 +1,6 @@
 body {
   font-family: 'Fira Mono', Monospace;
+  font-size: 14pt;
   background-color : #101018;
   color: #d0bf8f;
 }
@@ -59,4 +60,4 @@ a {
 }
 .timestamp {
     font-weight: 600;
-    }
+}

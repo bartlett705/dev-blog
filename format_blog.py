@@ -100,10 +100,10 @@ def format_blog(input_file, output_path):
     index_file.write(index_markup)
     index_file.close()
 
-    print ('Posts (unpublished):', len(toc), '(', unpublished, ')')
-    print ('Tags:',)
+    print ('Posts (unpublished):'), len(toc), ('('), unpublished, (')')
+    print ('Tags:'),
     for tag in tag_dict:
-        print (tag[0] + ' ',)
+        print tag[0] + (' '),
     print ('''
 
     ===============
