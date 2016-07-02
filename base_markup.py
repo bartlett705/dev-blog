@@ -12,6 +12,7 @@ header = """
     <title>{% blog_name %}</title>
     <link href="https://fonts.googleapis.com/css?family=VT323|Fira+Mono:400,700" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/codehilite.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <h1>{% blog_name %}</h1>   

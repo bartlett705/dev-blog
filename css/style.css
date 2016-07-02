@@ -30,8 +30,10 @@ a {
     text-align: center;
 }
 .tagged-posts {
+
     display: none;
 }
+
 .tag-name:hover {
     background-color: #202030;
     border: 1px #404060 dotted;
@@ -40,14 +42,13 @@ a {
     width: 100%;
 }
 .tag-name:hover > .tagged-posts {
-    display: inline;
+    display: inline-block;
 }
-.tags {
+.post-tags {
     width: 80%;
-    border: 2px green;
     margin: auto;
 }
-.tag {
+.post-tag {
     background-color: #d0bf8f;
     color: #101018;
     border-radius: 2px;
