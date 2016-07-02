@@ -45,38 +45,44 @@ def format_blog(input_file, output_path):
             unpublished += 1
             
     for title, link, timestamp, body, tags, index in toc: # Traverse posts again to build individual pages
-        print 'Generating Post Page ['+ title + ']...'
-        previous_post_idx = index - 1
-        if previous_post_idx < 0:
-            previous_post_idx = len(toc) - 1
-        next_post_idx = index + 1
-        if next_post_idx == len(toc):
-            next_post_idx = 0
-        marked_down = post_header
-        marked_down += '<div class="entry">\n'
-        marked_down += '\t<h1>' + title + '</h1>\n'
-        marked_down += '\t<p class="timestamp">[' + timestamp + ']</p>\n'
-        marked_down += '\t<p class="post-body">' + body + '</p>\n'
-        marked_down += '</div>'
-        marked_down += '\t<div class="tags">' + '\n'
-        for tag in tags:
-            marked_down += '\t\t<div class="blog-tag">' + tag + '</div>\n'
-    # These next four lines assemble a dictionary of links to pages with each tag
-            if tag in tag_dict:
-                tag_dict[tag].append((title, link))
-            else:
-                tag_dict[tag] = [(title, link)]
-        marked_down += '\t\n</div>\n'
-        marked_down += '<br><hr><div class="navbar">\n'
-        marked_down += '\t&laquo; <a href="'+ toc[previous_post_idx][1] + '">' + toc[previous_post_idx][0] + '</a> | <a href="index.html">Contents</a> |<a href="' + toc[next_post_idx][1] + '">' + toc[next_post_idx][0] + '</a> &raquo;\n'
-        marked_down += '</div>\n'                                                                                                                                                     
-        marked_down += post_footer
+        try:
+            print 'Generating Post Page ['+ title + ']...'
+            previous_post_idx = index - 1
+            if previous_post_idx < 0:
+                previous_post_idx = len(toc) - 1
+            next_post_idx = index + 1
+            if next_post_idx == len(toc):
+                next_post_idx = 0
+            marked_down = post_header
+            marked_down += '<div class="entry">\n'
+            marked_down += '\t<h1>' + title + '</h1>\n'
+            marked_down += '\t<p class="timestamp">[' + timestamp + ']</p>\n'
+            marked_down += '\t<p class="post-body">' + body + '</p>\n'
+            marked_down += '</div>'
+            marked_down += '\t<div class="tags">' + '\n'
+            for tag in tags:
+                marked_down += '\t\t<div class="blog-tag">' + tag + '</div>\n'
+        # These next four lines assemble a dictionary of links to pages with each tag
+                if tag in tag_dict:
+                    tag_dict[tag].append((title, link))
+                else:
+                    tag_dict[tag] = [(title, link)]
+            marked_down += '\t\n</div>\n'
+            marked_down += '<br><hr><div class="navbar">\n'
+            marked_down += '\t&laquo; <a href="'+ toc[previous_post_idx][1] + '">' + toc[previous_post_idx][0] + '</a> | <a href="index.html">Contents</a> |<a href="' + toc[next_post_idx][1] + '">' + toc[next_post_idx][0] + '</a> &raquo;\n'
+            marked_down += '</div>\n'                                                                                                                                                     
+            marked_down += post_footer
 
-        index_markdown += '<li class="toc_entry">[' + timestamp + '] :\
-        <a href="' + link + '"><strong>' + title + '</strong></a></li>\n'
-        of = file(output_path + link, 'w')
-        of.write(marked_down)
-        of.close()
+            index_markdown += '<li class="toc_entry">[' + timestamp + '] :\
+            <a href="' + link + '"><strong>' + title + '</strong></a></li>\n'
+            of = file(output_path + link, 'w')
+            of.write(marked_down)
+            of.close()
+        except (TypeError, ValueError):
+            print '**ERROR**'
+            print 'There seems to be some incorrectly-formatted data in file [' + input_file + '], in post [' + title + '].'
+            print 'Please check the documentation for a template.'
+            exit(1)
 
     print 'Processing Tags...'
     tag_dict = sorted(tag_dict.items(), key=lambda t: len(t[1]), reverse=True)

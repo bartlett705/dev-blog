@@ -14,7 +14,7 @@ body : |
      <li>the website look and layout, which is a matter of writing many different style blocks for each page element, then letting the script choose from them randomly.</ul>
      <p>The first part is easy enough, even if the code isn't the most elegant-looking; it begins with a nice 'pantry' of options for the main elements of a dish (mostly proteins and high-class veg), some veggies and starches, sauces, and garnishes in the form of a series of lists.  I stuck these in a separate .js file just for the sake of organization.  The logic for assembling said ingredients into a tasty dish consists of a series of conditionals and some basic string manipulation defining a sort of simple grammar, which is populated by JavaScript's wonderful and aptly-named Math.random() function...ahem.
      <p>The second part, that is, the CSS, makes liberal use of nested class selectors to essentially define several different website layouts in one file, each under a 'master' class applied to the body. i.e.
-     <pre> 
+     <pre><code data-language='css'> 
      .bg3 {  /* layout starts with a color scheme 
         background: #e9ddbf;
         color: #6495ED;
@@ -32,7 +32,7 @@ body : |
      .font2 {
         font-family: 'Aref Ruqaa', serif;
         font-size: 14pt;
-      </pre>
+      </code></pre>
       My original plan was to actually make separate css files, and include a different one with each load of the page, but the ability to nest class styles made that unnecessary, and I like being able to edit everything in one file.
 ---
 title: First Post
@@ -43,7 +43,7 @@ body: |
       <p>
       In my never-ending obsession with ways to store and manipulate data that I don't have, I decided to learn about XML, SGML, and YAML one night.  After a bit of WikiPedia-diving, I decided that YAML was the most attractive choice for implementing yet another digital-journal-type program.  The plain-text journal snippets I had used from time to time were nearly well-formed YAML documents already.  
       <p>
-      After a few experiments with using jQuery to populate an HTML document with data from an external structure, like the <a href="http://codemosey.net/menu">menu generator</a>, I felt plenty comfortable writing html using a series of concatenated strings. Python is my scripting language of choice at the moment, and it has a pretty handy <a href="http://pyyaml.org/wiki">PyYAML</a> library (not that you hardly need any external help parsing such simple YAML documents), so I knocked together a YAML -> HTML formatter in no time. 
+      After a few experiments with using jQuery to populate an HTML document with data from an external structure, like the <a href="http://codemosey.net/menu" target="_blank">menu generator</a>, I felt plenty comfortable writing html using a series of concatenated strings. Python is my scripting language of choice at the moment, and it has a pretty handy <a href="http://pyyaml.org/wiki">PyYAML</a> library (not that you hardly need any external help parsing such simple YAML documents), so I knocked together a YAML -> HTML formatter in no time. 
 
 tags: ['YAML', 'python']
 ---
@@ -53,21 +53,30 @@ publish: yes
 tags: ['YAML', 'python']
 body: |
   In attempting to generalize this blog's code, I ran into the issue of wanting to place data that wasn't available until run-time (i.e. the blog's name and author info, which will live as the first entry of the YAML file) into the template HTML stored in another file.  The solution was very simple; I stole it straight from jinja, in fact.  In the HTML, we put placeholders, for instance:
-  <code>
-  <body>
+  <pre><code data-language='html'>
     <h1>{% blog_name %}</h1>
-  </code>
-  in the header, and
-  <pre>
-  <div class='attribution'>(c) <a href='{% org_link %}'>{% org_name %}</a></div></pre>
+  </code></pre>
+  in the header, and<pre><code data-language='html'>
+  <div class='attribution'>(c) <a href='{% org_link %}'>{% org_name %}</a></div></code></pre>
   in the footer.
   <p>
   Then, we just make a pass at those imported strings with replace() in the formatting script AFTER we've pulled the data from the YAML file's first record, i.e.:
 
-  <pre> index_footer = index_footer.replace('{% org_name %}', blog_info['org_name']).replace('{% org_link %}', blog_info['org_link'])</pre>
+  <pre><code data-language='python'"> index_footer = index_footer.replace('{% org_name %}', blog_info['org_name'])</code></pre>
 
   By moving the remaining 'user' data out of the formatting script and into the blog's YAML data file, the script is now much more re-usable.
   <hr>
   In anticipation of having many more tags, I also added a step to sort the dictionary of them into a list of tuples, sorted by the length of the list of relevant posts, like so:
-  <pre>tag_dict = sorted(tag_dict.items(), key=lambda t: len(t[1]), reverse=True)</pre>
+  <pre><code data-language='python'>tag_dict = sorted(tag_dict.items(), key=lambda t: len(t[1]), reverse=True)</code></pre>
   The lambda function looks scary, but all it does is return the length of the [1]st element for each (key, value) pair that .items() pulls out of tag_dict, which in our case is a list of (title, link) tuples for each post with that tag.  It can be confusing to see 'key' in the sort function, as well, but this has nothing to do with the dictionary, really - the sort 'key' refers to what the sort criteria should be, which in the line above ends up being an integer for each entry in tag_dict, equal to the number of posts with that tag.  We reverse the sort, so that the big numbers - i.e. tags with a lot of posts referencing them - come first.
+---
+title: dev-blog-plus
+timestamp: 01 Jul 2016
+publish: sure
+tags: ['CSS', 'JavaScript']
+body:
+  The totally-minimalist version of dev-blog didn't last long.  It still exists - and will continue to be updated as needed - but, there is a new fork, aptly-named dev-blog-plus.  So far the only addition is rainbow.js, for purposes of code syntax highlighting.  That will probably remain the only difference between the two flavors for some time.
+  <p>
+  The script that powers dev-blog now has command-line features to choose a different input file and/or output directory, as well as better documentation both at the command line and in the README.md
+  <p>
+  Oh yeah, and this is now linked from somewhere. 
